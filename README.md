@@ -12,7 +12,7 @@ From the analysis, we can see that the June and December temperature statistics 
 - The maximum and low temperatures in June and December so not change drastically.
 ## Summary: 
 It can be seen from the above statistics that temperatures through the year do not vary much and it would be profitable to open the surf and icecream shop in Oahu.
-#### Query 1- Precipitation data for June and December Grouped by date determining which day it rained the most.
+#### Query 1- Precipitation data for June and December-General(saved images) and Grouped by date determining which day it rained the most.
 results_June = session.query(Measurement.prcp, Measurement.date).filter(extract('month', Measurement.date) == '06').\
 group_by(Measurement.date).order_by(Measurement.date.desc())
 ![Results for June]()
