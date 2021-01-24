@@ -1,6 +1,6 @@
 # Surfs_up by Ketaki
 ## Overview of the analysis
-This project helps W.Avy to undertand the temperature patterns in Oahu, for the months of June and December. This analysis will help him decide if investing in the surf and icecream shop business is profitable year round.
+This project helps W.Avy to undertand the temperature patterns in Oahu, for the months of June and December. This analysis will help him decide if investing in the surf and icecream shop business would be sustainable and profitable year-round.
 ## Results:
 From the analysis, we can see that the June and December temperature statistics are as follows:
 #### June:
