@@ -16,22 +16,26 @@ From the analysis, we can see that the June and December temperature statistics 
 - There is a good amount of sample data collected for both the months.
 
 ## Summary: 
-It can be seen from the above statistics that temperatures through the year do not vary much and it would probably be profitable to open the surf and icecream shop in Oahu.
-#### Query 1- Precipitation data for June and December,Grouped by date determining which day it rained the most.
-results_June = session.query(Measurement.prcp, Measurement.date).filter(extract('month', Measurement.date) == '06').\
-group_by(Measurement.date).order_by(Measurement.prcp.desc())
+It can be seen from the above statistics that temperatures through the year do not vary much and it would probably be profitable to open the surf and icecream shop in Oahu. To gain more confidence, we can gather more weather data by location and the dates. 
+#### Query 1- Precipitation data for June and December,grouped by date determining which day it rained the most.
+- results_June = session.query(func.max(Measurement.prcp), Measurement.date).filter(extract('month', Measurement.date) == '06').\
+  group_by(Measurement.date).order_by(Measurement.prcp.desc())
 
 - ![Results for June](https://github.com/ketpradh/surfs_up/blob/main/Resources/June_Precipitation.PNG)
-results_Dec = session.query(Measurement.prcp, Measurement.date).filter(extract('month', Measurement.date) == '12').\
+
+- results_Dec = session.query(func.max(Measurement.prcp), Measurement.date).filter(extract('month', Measurement.date) == '12').\
 group_by(Measurement.date).order_by(Measurement.prcp.desc())
 - ![Results for December](https://github.com/ketpradh/surfs_up/blob/main/Resources/Dec_Precipitation.PNG)
-It can be seen that December receives more rain than June.
-#### Query 2- Maximum/Minimum tempertaures recorded for June and December by stations.
-results_June = session.query(func.max(Measurement.tobs), func.min(Measurement.tobs), Measurement.station, Station.elevation).\
+
+- It can be seen that December receives more rain than June.
+#### Query 2- Maximum/Minimum tempertaures recorded for June and December by stations, which can help decide the location of the shop.
+- results_June = session.query(func.max(Measurement.tobs), func.min(Measurement.tobs), Measurement.station, Station.elevation).\
                 filter(extract('month', Measurement.date) == '06').\
                 filter(Measurement.station == Station.station).group_by(Measurement.station).order_by(Station.elevation.desc())
 - ![June results](https://github.com/ketpradh/surfs_up/blob/main/Resources/June%20temps%20by%20Station.PNG)
-results_Dec = session.query(func.max(Measurement.tobs), func.min(Measurement.tobs), Measurement.station, Station.elevation).\
+
+- results_Dec = session.query(func.max(Measurement.tobs), func.min(Measurement.tobs), Measurement.station, Station.elevation).\
                 filter(extract('month', Measurement.date) == '12').\
                 filter(Measurement.station == Station.station).group_by(Measurement.station).order_by(Station.elevation.desc())
 - ![Dec results](https://github.com/ketpradh/surfs_up/blob/main/Resources/Dec%20temps%20by%20Station.PNG)            
+- It can be seen that the temeprature variation is not affected much by elevation.
